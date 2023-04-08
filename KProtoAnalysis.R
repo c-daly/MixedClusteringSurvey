@@ -50,12 +50,12 @@ KProto_process_varied_set <- function(ds, plot_characteristics, clusters) {
   return(current_mean)
 }
  
-means <- list()
+kproto_means <- list()
 kproto_start = Sys.time()
 for(idx in 1:DS_COUNT) {
   current_mean <- KProto_process_varied_set(data_collection[[DS_IDX]][[idx]], data_collection[[PC_IDX]][[idx]], data_collection[[CLUSTER_IDX]][[idx]])
-  means[idx] <- current_mean 
+  kproto_means[idx] <- current_mean 
 }
 
-kproto_time <- (Sys.time() - pam_start)
-kproto_mean <- mean(unlist(means))
+kproto_time <- (Sys.time() - kproto_start)
+kproto_overall_mean <- mean(unlist(kproto_means))

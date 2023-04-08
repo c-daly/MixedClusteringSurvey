@@ -50,12 +50,12 @@ PAM_process_varied_set <- function(ds, plot_characteristics, clusters) {
   return(current_mean)
 }
 
-means <- list()
+pam_means <- list()
 pam_start = Sys.time()
 for(idx in 1:DS_COUNT) {
   current_mean <- PAM_process_varied_set(data_collection[[DS_IDX]][[idx]], data_collection[[PC_IDX]][[idx]], data_collection[[CLUSTER_IDX]][[idx]])
-  means[idx] <- current_mean
+  pam_means[idx] <- current_mean
 }
 
 pam_time <- (Sys.time() - pam_start)
-pam_mean <- mean(unlist(means))
+pam_overall_mean <- mean(unlist(pam_means))

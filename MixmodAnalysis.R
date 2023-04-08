@@ -22,7 +22,7 @@ mixmod_process_varied_set <- function(ds, plot_characteristics, clusters) {
     
     # each of the sub-datasets is itself
     # a dataframe
-    for (frame_idx in 1:length(frames))
+    for (frame_idx in 1:2) #length(frames))
     {      
       df = data.frame(frames[[frame_idx]])
       frame_data <- subset(df, select = -c(y))
@@ -47,13 +47,13 @@ mixmod_process_varied_set <- function(ds, plot_characteristics, clusters) {
   return(current_mean)
 }
 
-means <- list()
-pam_start = Sys.time()
+mixmod_means <- list()
+mixmod_start = Sys.time()
 for(idx in 1:DS_COUNT) {
   mixmod_process_varied_set(data_collection[[DS_IDX]][[idx]], data_collection[[PC_IDX]][[idx]], data_collection[[CLUSTER_IDX]][[idx]])
-  means[idx] <- current_mean
+  mixmod_means[idx] <- current_mean
 }
 
 
-pam_time <- (Sys.time() - pam_start)
-pam_mean <- mean(unlist(means))
+mixmod_time <- (Sys.time() - mixmod_start)
+mixmod_mean <- mean(unlist(mixmod_means))

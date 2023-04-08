@@ -45,14 +45,14 @@ LCM_process_varied_set <- function(ds, plot_characteristics, clusters) {
   points(c(mean1, mean2, mean3), pch=20) 
   return(current_mean)
 }
-means <- list()
+lcm_means <- list()
 lcm_start = Sys.time()
 for(idx in 1:DS_COUNT) {
   current_mean <- LCM_process_varied_set(data_collection[[DS_IDX]][[idx]], data_collection[[PC_IDX]][[idx]], data_collection[[CLUSTER_IDX]][[idx]])
-  list[idx] <- current_mean
+  lcm_means[idx] <- current_mean
   
 }
 
-lcm_time <- (Sys.time() - kamila_start)
-lcm_mean <- mean(unlist(means))
+lcm_time <- (Sys.time() - lcm_start)
+lcm_overall_mean <- mean(unlist(lcm_means))
 

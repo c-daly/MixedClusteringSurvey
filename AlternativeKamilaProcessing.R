@@ -59,11 +59,11 @@ kamila_process_varied_set <- function(ds, plot_characteristics, clusters) {
   return(current_mean)
 }
 
-means <- list()
+kamila_means <- list()
 kamila_start = Sys.time()
 for(idx in 1:DS_COUNT) {
   current_mean <- kamila_process_varied_set(data_collection[[DS_IDX]][[idx]], data_collection[[PC_IDX]][[idx]], data_collection[[CLUSTER_IDX]][[idx]])
-  means[idx] <- current_mean
+  kamila_means[idx] <- current_mean
 }
 kamila_time <- (Sys.time() - kamila_start)
-kamila_mean <- mean(unlist(means))
+kamila__overall_mean <- mean(unlist(kamila_means))

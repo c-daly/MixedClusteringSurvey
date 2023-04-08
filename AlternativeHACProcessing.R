@@ -34,7 +34,7 @@ HAC_process_varied_set <- function(ds, plot_characteristics, clusters) {
       dist <- daisy(frame_data, metric = "gower")
       result <- hclust(dist, method="ward.D2")
       cut_result <- cutree(result, clust_num)
-      frameARI <-ARI(cut_result, y)
+      frameARI <-ARI(cut_result, df$y)
       meanByFrames[frame_idx] <- frameARI
     }
     frameMean <- mean(unlist(meanByFrames))
@@ -61,12 +61,12 @@ HAC_process_varied_set <- function(ds, plot_characteristics, clusters) {
 #HAC_process_varied_set(D_NUM_CONT_VARIES_CAT4, contvaries_plot_characteristics_cat4)
 #HAC_process_varied_set(D_NUM_CONT_VARIES_CAT8, contvaries_plot_characteristics_cat8)
 
-means <- list()
+hac_means <- list()
 hac_start = Sys.time()
 for(idx in 1:DS_COUNT) {
   current_mean <- HAC_process_varied_set(data_collection[[DS_IDX]][[idx]], data_collection[[PC_IDX]][[idx]], data_collection[[CLUSTER_IDX]][[idx]])
-  means[idx] <- current_mean
+  hac_means[idx] <- current_mean
 }
 hac_time <- (Sys.time() - hac_start)
-hac_mean <- mean(unlist(means))
+hac_overall_mean <- mean(unlist(hac_means))
 
