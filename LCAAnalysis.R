@@ -1,5 +1,6 @@
 library(aricode)
 library(mclust)
+library(m3C)
 
 LCA_process_varied_set <- function(ds, plot_characteristics, clusters) {
   if(missing(clusters)) {

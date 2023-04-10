@@ -3,7 +3,11 @@ library(aricode)
 library(rlist)
 library(sfsmisc)
 
-HAC_process_varied_set <- function(ds, plot_characteristics, clusters) {
+HAC_process_varied_set <- function(ds, plot_characteristics, clusters, ds_idx) {
+  best_ARI <- 0
+  best_frame_result <- list()
+  best_frame_tsne <- list()
+  
   if(missing(clusters)) {
     clusters <- list(6, 6, 6)
   }
@@ -35,19 +39,33 @@ HAC_process_varied_set <- function(ds, plot_characteristics, clusters) {
       result <- hclust(dist, method="ward.D2")
       cut_result <- cutree(result, clust_num)
       frameARI <-ARI(cut_result, df$y)
+      if(frameARI > best_ARI) {
+        best_ARI <- frameARI
+        best_frame_result <- cut_result
+        tsne_obj <- Rtsne(dist, is_distance = TRUE)
+        tsne_data <- tsne_obj$Y %>%
+          data.frame() %>%
+          setNames(c("X","Y")) %>%
+          mutate(cluster = factor(cut_result))
+        best_frame_tsne <- tsne_data
+        best_hac_plots[[ds_idx]] <- data.frame(best_frame_tsne)
+      }
       meanByFrames[frame_idx] <- frameARI
     }
     frameMean <- mean(unlist(meanByFrames))
     meanAcrossFrames[d_idx] <- frameMean
-    boxplots[[d_idx]] = meanByFrames
+    boxplots[[d_idx]] <- meanByFrames
   }
   mean1 <- mean(unlist(boxplots[1]))
   mean2 <- mean(unlist(boxplots[2]))
   mean3 <- mean(unlist(boxplots[3]))
-  current_mean <- mean(mean1, mean2, mean3)
+  current_mean <- mean(c(mean1, mean2, mean3))
   names <- plot_characteristics$names
   ylab <- plot_characteristics$ylab
   xlab <- plot_characteristics$xlab
+  title <- paste("HClust Results (Gower/Ward.D2): ", ds_idx)
+  g <- ggplot(mapping = aes(x = X, y = Y), best_hac_plots[[ds_idx]]) + geom_point(aes(color = cluster)) + ggtitle(title)
+  print(g)
   boxplot(unlist(boxplots[1]), unlist(boxplots[2]), unlist(boxplots[3]), names=names, ylab=ylab, xlab=xlab, main="HAC Results")
   points(c(mean1, mean2, mean3), pch=20) 
   return(current_mean)
@@ -64,9 +82,9 @@ HAC_process_varied_set <- function(ds, plot_characteristics, clusters) {
 hac_means <- list()
 hac_start = Sys.time()
 for(idx in 1:DS_COUNT) {
-  current_mean <- HAC_process_varied_set(data_collection[[DS_IDX]][[idx]], data_collection[[PC_IDX]][[idx]], data_collection[[CLUSTER_IDX]][[idx]])
+  current_mean <- HAC_process_varied_set(data_collection[[DS_IDX]][[idx]], data_collection[[PC_IDX]][[idx]], data_collection[[CLUSTER_IDX]][[idx]], idx)
   hac_means[idx] <- current_mean
 }
 hac_time <- (Sys.time() - hac_start)
 hac_overall_mean <- mean(unlist(hac_means))
-
+barplot(unlist(hac_means),names=c(1,2,3,4,5,6,7), ylim=c(0,1), main="HAC mean ARI by Test")
