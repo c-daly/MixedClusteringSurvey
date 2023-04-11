@@ -108,7 +108,7 @@ D_CONT8_CAT8_DS <- list(D_CONT8_CAT8, D_CONT8_CAT8_COLS)
 
 D_NUM_CONT_VARIES_CAT8 <- list(D_CONT2_CAT8_DS, D_CONT4_CAT8_DS, D_CONT8_CAT8_DS)
 # Overall dataset
-data <- list(D_NVARIES, D_CONTVARIES, D_KVARIES, D_CAT_REL_VARIES, D_CONT_REL_VARIES, D_NUM_CONT_VARIES_CAT4, D_NUM_CONT_VARIES_CAT8)
+data <- list(D_NVARIES, D_KVARIES, D_CAT_REL_VARIES, D_CONT_REL_VARIES, D_CONTVARIES, D_NUM_CONT_VARIES_CAT4, D_NUM_CONT_VARIES_CAT8)
 
 ylab <- "ARI"
 nvaries_plot_characteristics <- list(names = c("n = 300", "n = 600", "n = 1200"), ylab = "ARI", xlab="Population Size")
@@ -120,8 +120,8 @@ contvaries_plot_characteristics_cat4 <- list(names = c("2", "4", "8"), ylab = "A
 contvaries_plot_characteristics_cat8 <- list(names = c("2", "4", "8"), ylab = "ARI", xlab="Number of Continuous Variables w/ 8 Categorical")
 
 default_cluster <- list(6, 6, 6)
-plot_characteristics <- list(nvaries_plot_characteristics, contvaries_plot_characteristics, kvaries_plot_characteristics, cat_rel_varies_plot_characteristics, cont_rel_varies_plot_characteristics, contvaries_plot_characteristics_cat4, contvaries_plot_characteristics_cat8)
-cluster_params <- list(default_cluster, default_cluster, list(2, 6, 10), default_cluster, default_cluster, default_cluster, default_cluster)
+plot_characteristics <- list(nvaries_plot_characteristics, kvaries_plot_characteristics, cat_rel_varies_plot_characteristics, cont_rel_varies_plot_characteristics, contvaries_plot_characteristics, contvaries_plot_characteristics_cat4, contvaries_plot_characteristics_cat8)
+cluster_params <- list(default_cluster, list(2, 6, 10), default_cluster, default_cluster, default_cluster, default_cluster, default_cluster)
 
 data_collection <- list(data, plot_characteristics, cluster_params)
 DS_COUNT <- length(data)

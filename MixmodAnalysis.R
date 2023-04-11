@@ -74,4 +74,4 @@ for(idx in 1:DS_COUNT) {
 
 mixmod_time <- (Sys.time() - mixmod_start)
 mixmod_mean <- mean(unlist(mixmod_means))
-barplot(unlist(mixmod_means),names=c(1,2,3,4,5,6,7), ylim=c(0,1), main="Mixmod mean ARI by Test")
+barplot(unlist(mixmod_means),names=c(1,2,3,4,5,6,7), ylim=c(0,1), xlab="Test number", ylab="Mean ARI", main="Mixmod mean ARI by Test")

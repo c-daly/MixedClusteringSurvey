@@ -84,4 +84,4 @@ for(idx in 1:DS_COUNT) {
 }
 kamila_time <- (Sys.time() - kamila_start)
 kamila_overall_mean <- mean(unlist(kamila_means))
-barplot(unlist(kamila_means),names=c(1,2,3,4,5,6,7), ylim=c(0,1), main="Kamila mean ARI by Test")
+barplot(unlist(kamila_means),names=c(1,2,3,4,5,6,7), ylim=c(0,1), xlab="Test number", ylab="Mean ARI", main="Kamila mean ARI by Test")

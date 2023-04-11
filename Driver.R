@@ -24,5 +24,4 @@ source("AlternativeKamilaProcessing.R")
 source("ExperimentalPam.R")
 source("AlternativeHACProcessing.R")
 source("KProtoAnalysis.R")
-source("LCAAnalysis.R")
-#source("LCM.R") # very long running
+source("LCM.R")

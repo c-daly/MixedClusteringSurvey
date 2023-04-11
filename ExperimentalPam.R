@@ -90,4 +90,4 @@ for(idx in 1:DS_COUNT) {
 
 pam_time <- (Sys.time() - pam_start)
 pam_overall_mean <- mean(unlist(pam_means))
-barplot(unlist(pam_means),names=c(1,2,3,4,5,6,7), ylim=c(0,1), main="PAM mean ARI by Test")
+barplot(unlist(pam_means),names=c(1,2,3,4,5,6,7), ylim=c(0,1), ylab="Mean ARI", xlab="Test number", main="PAM mean ARI by Test")

@@ -87,4 +87,4 @@ for(idx in 1:DS_COUNT) {
 }
 hac_time <- (Sys.time() - hac_start)
 hac_overall_mean <- mean(unlist(hac_means))
-barplot(unlist(hac_means),names=c(1,2,3,4,5,6,7), ylim=c(0,1), main="HAC mean ARI by Test")
+barplot(unlist(hac_means),names=c(1,2,3,4,5,6,7), ylim=c(0,1), xlab="Test number", ylab="Mean ARI", main="HAC mean ARI by Test")

@@ -77,4 +77,4 @@ for(idx in 1:DS_COUNT) {
 
 kproto_time <- (Sys.time() - kproto_start)
 kproto_overall_mean <- mean(unlist(kproto_means))
-barplot(unlist(kproto_means),names=c(1,2,3,4,5,6,7),ylim=c(0,1),main="K-Prototypes mean ARI by Test")
+barplot(unlist(kproto_means),names=c(1,2,3,4,5,6,7),ylim=c(0,1), xlab="Test number", ylab="Mean ARI", main="K-Prototypes mean ARI by Test")

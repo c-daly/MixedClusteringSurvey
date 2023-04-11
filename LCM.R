@@ -73,5 +73,5 @@ for(idx in 1:DS_COUNT) {
 
 lcm_time <- (Sys.time() - lcm_start)
 lcm_overall_mean <- mean(unlist(lcm_means))
-barplot(unlist(lcm_means),names=c(1,2,3,4,5,6,7),ylim=c(0,1), main="LCM mean ARI by Test")
+barplot(unlist(lcm_means),names=c(1,2,3,4,5,6,7),ylim=c(0,1), xlab="Test number", ylab="mean ARI", main="LCM mean ARI by Test")
 
